@@ -1,15 +1,30 @@
 import { attributes, react as HomeContent } from '../content/home.md';
 
-import { css } from '@emotion/react';
 import Layout from '../components/layout';
 import Section from '../components/section';
 import Container from '../components/container';
 import Metadata from '../components/metadata';
 import GenericContent from '../components/genericContent';
+import config from "../lib/config";
+import { countPosts, listPostContent } from "../lib/posts";
+import Link from 'next/link';
 
-export default function Home() {
+function Post({ slug, date, title }) {
+
+	return <Link href={`/post/${slug}`}>
+		<a>
+			<div>
+				<h2>{title}</h2>
+				<p>{date}</p>
+			</div>
+		</a>
+	</Link>
+}
+
+export default function Home({ posts, pagination }) {
 	let { title, text } = attributes;
 
+	console.log(pagination);
 	return (
 		<Layout theme='theme-primary'>
 			<Metadata title={title} />
@@ -22,6 +37,25 @@ export default function Home() {
 				</Container>
 			</Section>
 
+			<Section>
+				<Container>
+					{posts.map(it => <Post key={it.slug} {...it} />)}
+				</Container>
+			</Section>
 		</Layout>
 	);
 }
+
+export const getStaticProps = async () => {
+	const posts = listPostContent(1, config.posts_per_page);
+	const pagination = {
+		current: 1,
+		pages: Math.ceil(countPosts() / config.posts_per_page),
+	};
+	return {
+		props: {
+			posts,
+			pagination,
+		},
+	};
+};
