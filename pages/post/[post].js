@@ -25,7 +25,7 @@ export default function Post({
 	title,
 	dateString,
 	slug,
-	description = "",
+	description,
 	source,
 }) {
 	const content = hydrate(source, { components })
