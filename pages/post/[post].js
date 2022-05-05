@@ -39,6 +39,7 @@ export default function Post({
 			/>
 			<Section>
 				<Container>
+					<h1>{title}</h1>
 					<GenericContent>
 						{content}
 					</GenericContent>
