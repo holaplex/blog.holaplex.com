@@ -25,8 +25,6 @@ export default function Post({
 	title,
 	dateString,
 	slug,
-	tags,
-	author,
 	description = "",
 	source,
 }) {
@@ -37,8 +35,6 @@ export default function Post({
 				title={title}
 				date={parseISO(dateString)}
 				slug={slug}
-				tags={tags}
-				author={author}
 				description={description}
 			/>
 			<Section>
@@ -73,8 +69,6 @@ export const getStaticProps = async ({ params }) => {
 			dateString: data.date,
 			slug: data.slug,
 			description: "",
-			tags: data.tags,
-			author: data.author,
 			source: mdxSource
 		},
 	};

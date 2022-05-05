@@ -11,9 +11,8 @@ export const GenericContentElement = styled.div`
 	}
 
 	a {
-		&:hover {
-			text-decoration: underline;
-		}
+		color: white;
+		text-decoration: underline;
 	}
 
 	ul, ol {
