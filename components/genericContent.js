@@ -27,6 +27,11 @@ export const GenericContentElement = styled.div`
 	li {
 		margin: 0.5rem 0;
 	}
+
+	div > iframe, .twitter-tweet {
+		margin-left: auto;
+		margin-right: auto;
+	}
 `;
 
 /**
