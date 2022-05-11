@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  repo: holaplex/blog.holaplex.com
   branch: master # Branch to update (optional; defaults to master)
 media_folder: public/uploads
 public_folder: uploads
