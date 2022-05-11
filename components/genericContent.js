@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 ** Styling for content like the type you get from the CMS, generic HTML, etc.
 */
 
-export const GenericContentElement = styled.div`
+export const GenericContent = styled.div`
 	p, ul {
 		margin: 1rem 0;
 	}
@@ -33,14 +33,4 @@ export const GenericContentElement = styled.div`
 		margin-right: auto;
 	}
 `;
-
-/**
- * A basic wrapper element for text content, usually parsed from markdown. Applies typical styling to paragraph tags, links, ol/ul, etc.
- * @param {object} props Component props
- * @param {string} props.children Content to be wrapped
- */
-const GenericContent = (props) => {
-	return <GenericContentElement {...props}>{props.children}</GenericContentElement>
-};
-
 export default GenericContent;
