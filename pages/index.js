@@ -15,7 +15,7 @@ function Post({ slug, date, title, image }) {
 	return <Link href={`/post/${slug}`}>
 		<a>
 			<div className='p-4 border border-gray-600 my-4 rounded-xl'>
-				<h2>{title}</h2>
+				<h2 className='mt-0'>{title}</h2>
 				{image && <img className='aspect-video w-full object-cover' src={'/' + image} alt="" />}
 				<p>{formatDate(date)}</p>
 			</div>
