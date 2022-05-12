@@ -18,7 +18,7 @@ const Element = styled.div`
  * @returns 
  */
 const Container = ({ children, className }) => {
-	return <Element className={"max-w-5xl mx-auto w-11/12 p-4 md:p-8 bg-base-dark text-content rounded-2xl my-8 " + className}>
+	return <Element className={"max-w-3xl mx-auto w-11/12 p-4 md:p-8 bg-base-dark text-content rounded-2xl my-8 " + className}>
 		{children}
 	</Element>
 };
