@@ -13,6 +13,7 @@ import Metadata from "../../components/metadata";
 import GenericContent from "../../components/genericContent";
 import Section from "../../components/section";
 import Container from "../../components/container";
+import Image from "next/image";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = (postContents => {
@@ -27,6 +28,7 @@ export default function Post({
 	slug,
 	description,
 	source,
+	image,
 }) {
 	const content = hydrate(source, { components })
 	return (
@@ -39,10 +41,17 @@ export default function Post({
 			/>
 			<Section>
 				<Container>
-					<h1>{title}</h1>
-					<GenericContent>
-						{content}
-					</GenericContent>
+					<div className="w-full lg:w-11/12 mx-auto">
+						<h1>{title}</h1>
+					</div>
+					{image && <img src={'/' + image}
+						className='w-full mx-auto mt-4 mb-12'
+					/>}
+					<div className="w-full lg:w-11/12 mx-auto">
+						<GenericContent>
+							{content}
+						</GenericContent>
+					</div>
 				</Container>
 			</Section>
 		</Layout>
@@ -70,6 +79,7 @@ export const getStaticProps = async ({ params }) => {
 			dateString: data.date,
 			slug: data.slug,
 			description: "",
+			image: data.image ? data.image : false,
 			source: mdxSource
 		},
 	};
