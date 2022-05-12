@@ -46,6 +46,7 @@ export default function Post({
 					</div>
 					{image && <img src={'/' + image}
 						className='w-full mx-auto mt-4 mb-12'
+						alt=''
 					/>}
 					<div className="w-full lg:w-11/12 mx-auto">
 						<GenericContent>
