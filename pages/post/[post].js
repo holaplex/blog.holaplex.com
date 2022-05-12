@@ -13,7 +13,6 @@ import Metadata from "../../components/metadata";
 import GenericContent from "../../components/genericContent";
 import Section from "../../components/section";
 import Container from "../../components/container";
-import Image from "next/image";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = (postContents => {
