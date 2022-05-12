@@ -42,7 +42,7 @@ export default function Post({
 			<Section>
 				<Container>
 					<div className="w-full lg:w-11/12 mx-auto">
-						<h1>{title}</h1>
+						<h1 className="mt-0">{title}</h1>
 					</div>
 					{image && <img src={'/' + image}
 						className='w-full mx-auto mt-4 mb-12'
