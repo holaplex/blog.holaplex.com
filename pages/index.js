@@ -8,15 +8,16 @@ import GenericContent from '../components/genericContent';
 import config from "../lib/config";
 import { countPosts, listPostContent } from "../lib/posts";
 import Link from 'next/link';
+import formatDate from '../utils/formatDate';
 
 function Post({ slug, date, title, image }) {
 
 	return <Link href={`/post/${slug}`}>
 		<a>
-			<div>
+			<div className='p-4 border border-gray-600 my-4 rounded-xl'>
 				<h2>{title}</h2>
 				{image && <img className='aspect-video w-full object-cover' src={'/' + image} alt="" />}
-				<p>{date}</p>
+				<p>{formatDate(date)}</p>
 			</div>
 		</a>
 	</Link>
