@@ -17,8 +17,21 @@ const Element = styled.div`
  * @param {string} props.className Appended to the existing tailwind classes
  * @returns 
  */
-const Container = ({ children, className }) => {
-	return <Element className={"max-w-3xl mx-auto w-11/12 p-4 md:p-8 bg-base-dark text-content rounded-2xl my-8 " + className}>
+const Container = ({ children, className, variant }) => {
+	let width = "max-w-3xl";
+
+	switch (variant) {
+		case "slim":
+			width = "max-w-xl";
+			break;
+		case "wide":
+			width = "max-w-5xl";
+			break;
+		default:
+			break;
+	}
+
+	return <Element className={width + " mx-auto w-11/12 p-4 md:p-8 bg-base-dark text-content rounded-2xl my-8 " + className}>
 		{children}
 	</Element>
 };

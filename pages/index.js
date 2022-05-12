@@ -9,12 +9,13 @@ import config from "../lib/config";
 import { countPosts, listPostContent } from "../lib/posts";
 import Link from 'next/link';
 
-function Post({ slug, date, title }) {
+function Post({ slug, date, title, image }) {
 
 	return <Link href={`/post/${slug}`}>
 		<a>
 			<div>
 				<h2>{title}</h2>
+				{image && <img className='aspect-video w-full object-cover' src={'/' + image} alt="" />}
 				<p>{date}</p>
 			</div>
 		</a>
@@ -30,15 +31,7 @@ export default function Home({ posts, pagination }) {
 			<Metadata title={title} />
 
 			<Section>
-				<Container>
-					<GenericContent>
-						<HomeContent />
-					</GenericContent>
-				</Container>
-			</Section>
-
-			<Section>
-				<Container>
+				<Container variant="slim">
 					{posts.map(it => <Post key={it.slug} {...it} />)}
 				</Container>
 			</Section>
