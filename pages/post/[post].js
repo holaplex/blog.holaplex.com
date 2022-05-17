@@ -13,6 +13,8 @@ import Metadata from "../../components/metadata";
 import GenericContent from "../../components/genericContent";
 import Section from "../../components/section";
 import Container from "../../components/container";
+import { css } from "@emotion/react";
+import formatDate from "../../utils/formatDate";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = (postContents => {
@@ -44,9 +46,11 @@ export default function Post({
 						<h1 className="mt-0">{title}</h1>
 					</div>
 					{image && <img src={'/' + image}
-						className='w-full mx-auto mt-4 mb-12'
+						className='w-full mx-auto my-4'
 						alt=''
 					/>}
+					<p className="text-center my-4">{formatDate(dateString)}</p>
+
 					<div className="w-full lg:w-11/12 mx-auto">
 						<GenericContent>
 							{content}

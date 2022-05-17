@@ -8,9 +8,6 @@ const Footer = () => {
 				<b>Holaplex</b>
 				<br />
 				©️ {new Date().getFullYear()}
-				<p>
-					The only truly open-sourced, decentralized &amp; community-governed NFT platform on Solana.
-				</p>
 			</GenericContent>
 		</nav>
 	</div>);
