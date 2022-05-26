@@ -13,7 +13,44 @@
 	<!-- Include the script that builds the page and powers Netlify CMS -->
 	<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 	<script>
+		const months = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		]
+		const formatDate = (date) => {
+			const dateObj = new Date(date);
+			const month = dateObj.getMonth() + 1;
+			const day = dateObj.getDate();
+			const year = dateObj.getFullYear();
+			return `${months[month - 1]} ${day}, ${year}`;
+		}
+
 		CMS.registerPreviewStyle("/admin/preview.css");
+		const PostPreview = createClass({
+			render: function () {
+				const entry = this.props.entry;
+				const image = entry.getIn(['data', 'image']);
+				const bg = this.props.getAsset(image);
+				return h('div', {},
+					h('h1', {}, entry.getIn(['data', 'title'])),
+					h('img', { src: bg.toString() }),
+					h('p', { "className": "post-date" }, formatDate(entry.getIn(['data', 'date']))),
+					h('div', { "className": "post-content" }, this.props.widgetFor('body'))
+				);
+			}
+		});
+
+		CMS.registerPreviewTemplate("posts", PostPreview);
 	</script>
 </body>
 
