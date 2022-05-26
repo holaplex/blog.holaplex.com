@@ -7,7 +7,9 @@ body {
 .frame-content {
 	padding: 15px;
 	border-radius: 15px;
-	border: 1px solid gray
+	border: 1px solid gray;
+	max-width: calc(726px + 30px);
+	margin: auto;
 }
 
 div>img {
