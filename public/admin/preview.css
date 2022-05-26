@@ -1,0 +1,17 @@
+body {
+	background: black;
+	color: white;
+	font-family: 'Inter', sans-serif;
+}
+
+.frame-content {
+	padding: 15px;
+	border-radius: 15px;
+	border: 1px solid gray
+}
+
+div>img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}
