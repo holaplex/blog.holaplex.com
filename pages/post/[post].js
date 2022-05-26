@@ -82,7 +82,7 @@ export const getStaticProps = async ({ params }) => {
 			title: data.title,
 			dateString: data.date,
 			slug: data.slug,
-			description: "",
+			description: data.description || "",
 			image: data.image ? data.image : false,
 			source: mdxSource
 		},
