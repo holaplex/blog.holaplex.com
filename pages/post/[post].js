@@ -73,7 +73,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
 	const slug = params.post
 	const source = fs.readFileSync(slugToPostContent[slug].fullPath, "utf8");
-	const { content, data } = matter(source, {
+	const { content, data } = matter(source.replace(/\]\(uploads\//g, '](/uploads/'), {
 		engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) }
 	});
 	const mdxSource = await renderToString(content, { components, scope: data });
