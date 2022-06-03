@@ -28,7 +28,7 @@ export const GenericContent = styled.div`
 		margin: 0.5rem 0;
 	}
 
-	div > iframe, .twitter-tweet {
+	div > iframe, .twitter-tweet, p > img, & > img, & > iframe, & > iframe {
 		margin-left: auto;
 		margin-right: auto;
 	}
