@@ -55,6 +55,12 @@ export default function Post({
 						<GenericContent>
 							{content}
 						</GenericContent>
+						<div className="w-full bg-gray-500 mt-12 mb-4" css={css`height: 1px;`} />
+						<p className="my-2">Share this post</p>
+						<div className="flex flex-wrap gap-4">
+							<a href="https://twitter.com/">Copy link</a>
+							<a href="https://twitter.com/">Twitter</a>
+						</div>
 					</div>
 				</Container>
 			</Section>
@@ -70,13 +76,17 @@ export const getStaticPaths = async () => {
 	};
 };
 
+const replaceTags = (content) => {
+	return content.replace(/(<br>|<br >)/gi, '<br />').replace(/(<hr>|<hr >)/gi, '<hr />');
+}
+
 export const getStaticProps = async ({ params }) => {
 	const slug = params.post
 	const source = fs.readFileSync(slugToPostContent[slug].fullPath, "utf8");
 	const { content, data } = matter(source.replace(/\]\(uploads\//g, '](/uploads/'), {
 		engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) }
 	});
-	const mdxSource = await renderToString(content, { components, scope: data });
+	const mdxSource = await renderToString(replaceTags(content), { components, scope: data });
 	return {
 		props: {
 			title: data.title,
