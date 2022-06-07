@@ -55,12 +55,6 @@ export default function Post({
 						<GenericContent>
 							{content}
 						</GenericContent>
-						<div className="w-full bg-gray-500 mt-12 mb-4" css={css`height: 1px;`} />
-						<p className="my-2">Share this post</p>
-						<div className="flex flex-wrap gap-4">
-							<a href="https://twitter.com/">Copy link</a>
-							<a href="https://twitter.com/">Twitter</a>
-						</div>
 					</div>
 				</Container>
 			</Section>
