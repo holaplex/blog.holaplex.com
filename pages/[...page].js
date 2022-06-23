@@ -1,7 +1,7 @@
 import config from "../lib/config";
 import { countPosts, listPostContent } from "../lib/posts";
 
-import BlogIndex from "../utils/blogIndex";
+import BlogIndex from "../components/blogIndex";
 export default BlogIndex;
 
 export const getStaticProps = async (context) => {

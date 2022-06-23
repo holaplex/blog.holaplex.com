@@ -1,11 +1,12 @@
 import { attributes, react as HomeContent } from '../content/home.md';
 
-import Layout from '../components/layout';
-import Section from '../components/section';
-import Container from '../components/container';
-import Metadata from '../components/metadata';
+import Layout from './layout';
+import Section from './section';
+import Container from './container';
+import Metadata from './metadata';
 import Link from 'next/link';
 import formatDate from '../utils/formatDate';
+import Pagination from './pagination';
 
 function Post(props) {
 	const { slug, date, title, image } = props;
@@ -30,6 +31,9 @@ export default function BlogIndex({ posts, pagination }) {
 			<Section>
 				<Container variant="slim">
 					{posts ? posts.map(it => <Post key={it.slug} {...it} />) : <></>}
+				</Container>
+				<Container variant="slim">
+					<Pagination data={pagination} />
 				</Container>
 			</Section>
 		</Layout>
