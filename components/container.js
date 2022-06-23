@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { GenericContentElement } from "./genericContent";
+import GenericContent from "./genericContent";
 
 const Element = styled.div`
-	& > *:first-child, & > ${GenericContentElement} > *:first-child {
+	& > *:first-child, & > ${GenericContent} > *:first-child {
 		margin-top: 0;
 	}
-	& > *:last-child, & > ${GenericContentElement} > *:last-child {
+	& > *:last-child, & > ${GenericContent} > *:last-child {
 		margin-bottom: 0;
 	}
 `;
