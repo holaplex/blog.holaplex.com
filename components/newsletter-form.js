@@ -32,7 +32,7 @@ const NewsletterForm = () => {
 			}
 			setInprogress(false);
 		}}>
-			<input type='email' disabled={inprogress} name='email' className="w-full text-white px-2 rounded border border-gray-400 bg-transparent" />
+			<input type='email' placeholder="youremail@holaplex.com" disabled={inprogress} name='email' className="w-full text-white px-2 rounded border border-gray-400 bg-transparent" />
 			<input type='submit' disabled={inprogress} className="rounded text-white px-2 border border-gray-400" />
 		</form>
 
