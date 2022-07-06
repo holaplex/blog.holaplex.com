@@ -32,8 +32,8 @@ const NewsletterForm = () => {
 			}
 			setInprogress(false);
 		}}>
-			<input type='email' required placeholder="youremail@holaplex.com" disabled={inprogress} name='email' className="w-full text-white px-2 rounded border border-gray-400 bg-transparent" />
-			<input type='submit' disabled={inprogress} className="rounded text-white px-2 border border-gray-400" />
+			<input type='email' required placeholder="your_email@holaplex.com" disabled={inprogress} name='email' className="w-full text-white px-3 py-1 rounded border border-gray-400 bg-transparent" />
+			<input type='submit' disabled={inprogress} className="rounded text-white px-3 py-1 border border-gray-400" />
 		</form>
 
 		{
