@@ -13,8 +13,8 @@ import Metadata from "../../components/metadata";
 import GenericContent from "../../components/genericContent";
 import Section from "../../components/section";
 import Container from "../../components/container";
-import { css } from "@emotion/react";
 import formatDate from "../../utils/formatDate";
+import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = (postContents => {
@@ -55,6 +55,18 @@ export default function Post({
 						<GenericContent>
 							{content}
 						</GenericContent>
+					</div>
+					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
+						<div className="text-center w-full text-sm">Share on</div>
+						<a target="_blank" rel="noreferrer" href={'https://twitter.com/intent/tweet?text=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+							<FaTwitter />
+						</a>
+						<a target="_blank" rel="noreferrer" href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+							<FaFacebook />
+						</a>
+						<a target="_blank" rel="noreferrer" href={'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+							<FaLinkedin />
+						</a>
 					</div>
 				</Container>
 			</Section>
