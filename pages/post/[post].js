@@ -58,13 +58,13 @@ export default function Post({
 					</div>
 					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
 						<div className="text-center w-full text-sm">Share on</div>
-						<a target="_blank" rel="noreferrer" href={'https://twitter.com/intent/tweet?text=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://twitter.com/intent/tweet?text=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
 							<FaTwitter />
 						</a>
-						<a target="_blank" rel="noreferrer" href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
 							<FaFacebook />
 						</a>
-						<a target="_blank" rel="noreferrer" href={'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
 							<FaLinkedin />
 						</a>
 					</div>
@@ -72,6 +72,24 @@ export default function Post({
 			</Section>
 		</Layout>
 	)
+}
+
+function openLinkInPopup(e) {
+	const n = e.nativeEvent;
+	let url = false;
+	let target = n.target;
+	for (let i = 0; i < 10; i++) {
+		if (target.getAttribute('href')) {
+			url = target.getAttribute('href');
+			break;
+		} else if (target.parentElement) {
+			target = target.parentElement;
+		}
+	}
+	if (!url) return;
+	window.open(url, 'popup', 'width=600,height=600');
+	console.log('popup triggered');
+	n.preventDefault();
 }
 
 export const getStaticPaths = async () => {
