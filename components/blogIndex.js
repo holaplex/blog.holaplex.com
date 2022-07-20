@@ -8,15 +8,19 @@ import Link from 'next/link';
 import formatDate from '../utils/formatDate';
 import Pagination from './pagination';
 
-function Post(props) {
-	const { slug, date, title, image } = props;
+export function Post(props) {
+	const { slug, date, title, image, tags } = props;
+
 
 	return <Link href={`/post/${slug}`}>
 		<a>
 			<div className='p-4 border border-gray-600 my-4 rounded-xl'>
 				<h2 className='mt-0'>{title}</h2>
 				{image && <img className='aspect-video w-full object-cover' src={'/' + image} alt="" />}
-				<p className='mt-4 mb-0'>{formatDate(date)}</p>
+				<div className='mt-4 mb-0 flex justify-between items-center'>
+					<span>{formatDate(date)}</span>
+					<span className='truncate w-1/2 text-right'>{tags && tags.map(tag => tag).splice(0, 3).join(' - ')}</span>
+				</div>
 			</div>
 		</a>
 	</Link>

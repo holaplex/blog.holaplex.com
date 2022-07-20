@@ -88,7 +88,6 @@ function openLinkInPopup(e) {
 	}
 	if (!url) return;
 	window.open(url, 'popup', 'width=600,height=600');
-	console.log('popup triggered');
 	n.preventDefault();
 }
 
