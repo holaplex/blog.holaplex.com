@@ -1,17 +1,11 @@
 import { fetchPostContent } from "../../lib/posts";
-import matter from "gray-matter";
-import fs from "fs";
-import yaml from "js-yaml";
-import { parseISO } from 'date-fns';
-import YouTube from "react-youtube";
-import { TwitterTweetEmbed } from "react-twitter-embed";
 import Layout from "../../components/layout";
 import Metadata from "../../components/metadata";
 import Section from "../../components/section";
 import Container from "../../components/container";
-import formatDate from "../../utils/formatDate";
 
 import { Post } from "../../components/blogIndex";
+import { getTagHref } from "../../utils/tags";
 
 export default function TagPage({
 	tag,
@@ -21,7 +15,7 @@ export default function TagPage({
 		<Layout>
 			<Metadata
 				title={tag + ' | Holaplex'}
-				slug={'/tags/' + tag}
+				slug={getTagHref(tag)}
 			/>
 			<Section>
 				<Container variant="slim">
@@ -50,7 +44,7 @@ export const getStaticPaths = async () => {
 		}
 	});
 	const paths = tags.map(value => {
-		return '/tag/' + value;
+		return getTagHref(value);
 	});
 	return {
 		paths,

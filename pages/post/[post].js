@@ -16,6 +16,7 @@ import Container from "../../components/container";
 import formatDate from "../../utils/formatDate";
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from "next/link";
+import { getTagHref } from "../../utils/tags";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = (postContents => {
@@ -36,7 +37,7 @@ export default function Post({
 	const Tags = [];
 	for (let index = 0; index < tags.length; index++) {
 		const tag = tags[index];
-		Tags.push(<Link key={tag} href={'/tag/' + tag}>
+		Tags.push(<Link key={tag} href={getTagHref(tag)}>
 			<a className="text-white">
 				{tag}
 			</a>
