@@ -44,6 +44,8 @@ collections:
       - label: "Tags"
         name: "tags"
         widget: "list"
+        max: 3
+        allow_add: true
         required: false
       - label: "Body"
         name: "body"

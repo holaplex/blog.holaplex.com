@@ -33,7 +33,6 @@ export default function Post({
 	image,
 	tags,
 }) {
-	console.log(tags);
 	const Tags = [];
 	for (let index = 0; index < tags.length; index++) {
 		const tag = tags[index];
