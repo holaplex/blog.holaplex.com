@@ -15,6 +15,7 @@ import Section from "../../components/section";
 import Container from "../../components/container";
 import formatDate from "../../utils/formatDate";
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import Link from "next/link";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = (postContents => {
@@ -30,7 +31,18 @@ export default function Post({
 	description,
 	source,
 	image,
+	tags,
 }) {
+	console.log(tags);
+	const Tags = [];
+	for (let index = 0; index < tags.length; index++) {
+		const tag = tags[index];
+		Tags.push(<Link key={tag} href={'/tag/' + tag}>
+			<a className="text-white">
+				{tag}
+			</a>
+		</Link>)
+	}
 	const content = hydrate(source, { components })
 	return (
 		<Layout>
@@ -49,8 +61,13 @@ export default function Post({
 						className='w-full mx-auto my-4'
 						alt=''
 					/>}
-					<p className="text-center my-4">{formatDate(dateString)}</p>
-
+					<p className="my-4 flex gap-4 flex-wrap justify-center">
+						<span>{formatDate(dateString)}</span>
+						{tags.length > 0 ? <>
+							<span>-</span>
+							{Tags}
+						</> : <></>}
+					</p>
 					<div className="w-full lg:w-11/12 mx-auto">
 						<GenericContent>
 							{content}
@@ -58,13 +75,28 @@ export default function Post({
 					</div>
 					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
 						<div className="text-center w-full text-sm">Share on</div>
-						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://twitter.com/intent/tweet?text=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a
+							onClick={openLinkInPopup}
+							target="_blank"
+							rel="noreferrer"
+							href={'https://twitter.com/intent/tweet?text=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}
+						>
 							<FaTwitter />
 						</a>
-						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a
+							onClick={openLinkInPopup}
+							target="_blank"
+							rel="noreferrer"
+							href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}
+						>
 							<FaFacebook />
 						</a>
-						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a
+							onClick={openLinkInPopup}
+							target="_blank"
+							rel="noreferrer"
+							href={'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}
+						>
 							<FaLinkedin />
 						</a>
 					</div>
@@ -88,7 +120,6 @@ function openLinkInPopup(e) {
 	}
 	if (!url) return;
 	window.open(url, 'popup', 'width=600,height=600');
-	console.log('popup triggered');
 	n.preventDefault();
 }
 
@@ -118,7 +149,8 @@ export const getStaticProps = async ({ params }) => {
 			slug: data.slug,
 			description: data.description || "",
 			image: data.image ? data.image : false,
-			source: mdxSource
+			source: mdxSource,
+			tags: data.tags ? data.tags : [],
 		},
 	};
 };
