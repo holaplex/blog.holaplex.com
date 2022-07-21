@@ -3,75 +3,48 @@ slug: querying-solana-blockchain-indexer
 title: "Querying the Solana Blockchain and Holaplex Indexer "
 date: 2022-06-03
 image: uploads/screen-shot-2022-06-03-at-11.54.10-am.jpg
-description: "Deep dive into querying the Solana blockchain, building Solana's
-  top indexer and increasing discoverability of NFTs  "
+description: "Deep dive into querying the Solana blockchain, building Solana's top indexer and increasing discoverability of NFTs"
+tags:
+  - dev-tools
 ---
-Glass chewing comes with the territory when early in Web3. Back in November of 2021, adoption of Solana NFTs was ramping up in a big way and with more storefronts being launched each day. Growth was exponential but there was a significant problem. The way to gather on-chain data was becoming a massive bottleneck and could ultimately cripple the entire community. Anyone who was minting, buying and selling Solana NFTs back then is familiar with the pain this ultimately caused. 
 
+Glass chewing comes with the territory when early in Web3. Back in November of 2021, adoption of Solana NFTs was ramping up in a big way and with more storefronts being launched each day. Growth was exponential but there was a significant problem. The way to gather on-chain data was becoming a massive bottleneck and could ultimately cripple the entire community. Anyone who was minting, buying and selling Solana NFTs back then is familiar with the pain this ultimately caused.
 
-
-What was needed was a robust indexer to be used as the underlying infrastructure to build high performance, decentralized and open-source NFT products. What follows is an overview of querying on Solana and the ultimate development of the Holaplex Indexer that powers our Discovery Tool. 
-
-
+What was needed was a robust indexer to be used as the underlying infrastructure to build high performance, decentralized and open-source NFT products. What follows is an overview of querying on Solana and the ultimate development of the Holaplex Indexer that powers our Discovery Tool.
 
 # Learnings about querying Solana, and how it shaped the Holaplex Discovery Tool.
 
-
-
 If you haven’t developed on a blockchain before, think of it as your database. For Solana there is only one table, accounts, that saves every record as a byte array. It's the responsibility of the program and callers to deserialize the bytes into meaningful data structures like a listing or NFT. The most popular byte encoding leveraged by programs is borsh.
 
-
-
 Solana RPC has two primary methods of querying accounts from the chain:\
+
 1. getProgramAccounts - Responds with all accounts associated to a program based on a set of byte mapping filters. When using borsh the first byte will be the key of the account struct. This is a simple introduction query for getting all accounts of a certain type like bids.
-
-
 
 <https://docs.solana.com/developing/clients/jsonrpc-api#getprogramaccounts>
 
-
-
 2. getAccountInfo (getMultipleAccounts) - Responds back with account data by address or addresses. The accounts can be of any type so you’ll need to match on the first byte to determine what borsh deserializer to process the account through.
-
-
 
 <https://docs.solana.com/developing/clients/jsonrpc-api#getmultipleaccounts>
 
-
-
 Though gPA is the most flexible method for querying Solana it is also the slowest. As programs accumulate accounts this method will get progressively slower. For example, querying all NFTs created by a wallet address takes 20-50+ seconds. Expect this query to get slower as more and more NFTs are added to the token-metadata program.
-
-
 
 gPA also doesn’t allow for sorting or limiting the number of accounts returned like with SORT BY and LIMIT clauses in SQL.
 
-
-
 Whenever possible use gMA as it responds in milliseconds. In order to effectively use gMA programs you need to make good use of program derived addresses (PDA) so callers can determine addresses using predictable seeds. A great example is the Metaplex Store Indexer accounts whose address seed is \[‘metaplex’, ‘METAPLEX_PROGRAM_ID’, ‘{storeAddress}’, ‘index’, ‘{page}’]. Given a store address you can find all the store index pages with a while loop iterating through pages starting at 0 until the account is not found.
 
-We’ve been fairly effective in powering Holaplex storefronts using just calls to Solana RPC but when it came time to provide collectors access to every active listing across all the Holaplex storefronts we needed a storage backend optimized for reads and capable slicing up results based on a variety of filters, sorts, and limit options.  
-
-
+We’ve been fairly effective in powering Holaplex storefronts using just calls to Solana RPC but when it came time to provide collectors access to every active listing across all the Holaplex storefronts we needed a storage backend optimized for reads and capable slicing up results based on a variety of filters, sorts, and limit options.
 
 # The launch of the Holaplex Discovery Tool
 
-
-
 The discovery tool is powered by our metaplex-indexer which continually pools for Metaplex listings, deserializes the accounts using exported modules from the Metaplex rust crates, and saves the listings (and other relevant accounts) into a Postgres database. As a separate process the indexer starts an RPC server that responds to Metaplex domain specific queries like getListings(filters: \[‘AUCTIONS’], sorts: \[‘LOWEST_TO_HIGHEST’]) in a matter of milliseconds. It's this endpoint you interact with when visiting holaplex.com and navigation to “current listings”.
 
-
-
 <https://github.com/holaplex/metaplex-indexer>
-
-
 
 We aren’t stopping with listings and will continue to expand the indexers coverage until every account associated with Metaplex programs is easily accessible through a ultra fast domain specific API.\
 \
 We are keeping a close eye on the accounts db project with the hopes of replacing our current polling strategy with a change event stream.\
 \
 https://github.com/solana-labs/solana/tree/master/accountsdb-plugin-postgres
-
-
 
 An enormous shout out to [@ryans.sol](https://twitter.com/ryans_sol) for heading up the development of the indexer.
 
