@@ -7,10 +7,10 @@ import Metadata from './metadata';
 import Link from 'next/link';
 import formatDate from '../utils/formatDate';
 import Pagination from './pagination';
+import { getTagHref } from '../utils/tags';
 
 export function Post(props) {
 	const { slug, date, title, image, tags } = props;
-
 
 	return <Link href={`/post/${slug}`}>
 		<a>
@@ -26,15 +26,32 @@ export function Post(props) {
 	</Link>
 }
 
-export default function BlogIndex({ posts, pagination }) {
+export default function BlogIndex({ posts, pagination, categories }) {
 	let { title } = attributes;
+
+	const categoryElements = [];
+	for (let index = 0; index < Math.min(6, categories.length); index++) {
+		const category = categories[index];
+		categoryElements.push(<Link href={getTagHref(category.name)} key={category.name}>
+			<a>
+				{category.name} - {category.count}
+			</a>
+		</Link>);
+	}
+
 	return (
 		<Layout theme='theme-primary'>
 			<Metadata title={title} />
 
 			<Section>
-				<Container variant="slim">
-					{posts ? posts.map(it => <Post key={it.slug} {...it} />) : <></>}
+				<Container variant="wide" className='flex lg:flex-row flex-col gap-4 justify-center'>
+					<div className='max-w-xl'>
+						{posts ? posts.map(it => <Post key={it.slug} {...it} />) : <></>}
+					</div>
+					<div className='hidden lg:flex flex-col gap-2 my-4'>
+						<span className='text-white'>Popular Topics</span>
+						{categoryElements}
+					</div>
 				</Container>
 				<Container variant="slim">
 					<Pagination data={pagination} />
