@@ -58,13 +58,28 @@ export default function Post({
 					</div>
 					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
 						<div className="text-center w-full text-sm">Share on</div>
-						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://twitter.com/intent/tweet?text=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a
+							onClick={openLinkInPopup}
+							target="_blank"
+							rel="noreferrer"
+							href={'https://twitter.com/intent/tweet?text=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}
+						>
 							<FaTwitter />
 						</a>
-						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a
+							onClick={openLinkInPopup}
+							target="_blank"
+							rel="noreferrer"
+							href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}
+						>
 							<FaFacebook />
 						</a>
-						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}>
+						<a
+							onClick={openLinkInPopup}
+							target="_blank"
+							rel="noreferrer"
+							href={'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://blog.holaplex.com/post/' + slug)}
+						>
 							<FaLinkedin />
 						</a>
 					</div>
