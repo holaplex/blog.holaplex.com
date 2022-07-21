@@ -24,7 +24,7 @@ export default function TagPage({
 				slug={'/tags/' + tag}
 			/>
 			<Section>
-				<Container>
+				<Container variant="slim">
 					<div className="w-full lg:w-11/12 mx-auto">
 						<h2 className="mt-0 text-center">Tag - {tag}</h2>
 					</div>
