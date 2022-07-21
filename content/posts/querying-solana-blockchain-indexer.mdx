@@ -16,7 +16,7 @@ What was needed was a robust indexer to be used as the underlying infrastructure
 
 If you haven’t developed on a blockchain before, think of it as your database. For Solana there is only one table, accounts, that saves every record as a byte array. It's the responsibility of the program and callers to deserialize the bytes into meaningful data structures like a listing or NFT. The most popular byte encoding leveraged by programs is borsh.
 
-Solana RPC has two primary methods of querying accounts from the chain:\
+Solana RPC has two primary methods of querying accounts from the chain:
 
 1. getProgramAccounts - Responds with all accounts associated to a program based on a set of byte mapping filters. When using borsh the first byte will be the key of the account struct. This is a simple introduction query for getting all accounts of a certain type like bids.
 
@@ -40,13 +40,12 @@ The discovery tool is powered by our metaplex-indexer which continually pools fo
 
 <https://github.com/holaplex/metaplex-indexer>
 
-We aren’t stopping with listings and will continue to expand the indexers coverage until every account associated with Metaplex programs is easily accessible through a ultra fast domain specific API.\
-\
-We are keeping a close eye on the accounts db project with the hopes of replacing our current polling strategy with a change event stream.\
-\
+We aren’t stopping with listings and will continue to expand the indexers coverage until every account associated with Metaplex programs is easily accessible through a ultra fast domain specific API.
+
+We are keeping a close eye on the accounts db project with the hopes of replacing our current polling strategy with a change event stream.
+
 https://github.com/solana-labs/solana/tree/master/accountsdb-plugin-postgres
 
 An enormous shout out to [@ryans.sol](https://twitter.com/ryans_sol) for heading up the development of the indexer.
 
-**\
-Written by [@espiKnwldgBmbs](https://twitter.com/espiKnwldgBmbs)**
+**Written by [@espiKnwldgBmbs](https://twitter.com/espiKnwldgBmbs)**
