@@ -73,7 +73,7 @@ export default function Post({ title, dateString, slug, description, source, ima
 						</a>
 					</div>
 					<div className="text-center mt-4">
-						<h3>Continue Reading:</h3>
+						<h3 className="font-semibold">Continue Reading:</h3>
 						<SuggestedPosts posts={suggested} />
 					</div>
 				</Container>
