@@ -1,7 +1,7 @@
 import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
 import matter from "gray-matter";
-import { fetchPostContent } from "../../lib/posts";
+import { fetchPostContent, getSuggestedPosts } from "../../lib/posts";
 import fs from "fs";
 import yaml from "js-yaml";
 import { parseISO } from "date-fns";
@@ -17,6 +17,7 @@ import formatDate from "../../utils/formatDate";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 import { getTagHref } from "../../utils/tags";
+import SuggestedPosts from "../../components/SuggestedPosts";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = ((postContents) => {
@@ -25,7 +26,7 @@ const slugToPostContent = ((postContents) => {
 	return hash;
 })(fetchPostContent());
 
-export default function Post({ title, dateString, slug, description, source, image, tags }) {
+export default function Post({ title, dateString, slug, description, source, image, tags, suggested }) {
 	const Tags = [];
 	for (let index = 0; index < tags.length; index++) {
 		const tag = tags[index];
@@ -71,6 +72,10 @@ export default function Post({ title, dateString, slug, description, source, ima
 							<FaLinkedin />
 						</a>
 					</div>
+					<div className="text-center mt-4">
+						<h3>Continue Reading:</h3>
+						<SuggestedPosts posts={suggested} />
+					</div>
 				</Container>
 			</Section>
 		</Layout>
@@ -113,6 +118,7 @@ export const getStaticProps = async ({ params }) => {
 		engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) },
 	});
 	const mdxSource = await renderToString(replaceTags(content), { components, scope: data });
+	const suggested = getSuggestedPosts(data.tags, data.slug).splice(0, 3);
 	return {
 		props: {
 			title: data.title,
@@ -122,6 +128,7 @@ export const getStaticProps = async ({ params }) => {
 			image: data.image ? data.image : false,
 			source: mdxSource,
 			tags: data.tags ? data.tags : [],
+			suggested: suggested,
 		},
 	};
 };
