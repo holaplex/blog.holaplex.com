@@ -37,6 +37,9 @@ export function Post(props) {
 export default function BlogIndex({ posts, pagination, categories }) {
 	let { title } = attributes;
 
+	categories.sort((a, b) => {
+		return b.count - a.count;
+	});
 	const categoryElements = [];
 	for (let index = 0; index < Math.min(6, categories.length); index++) {
 		const category = categories[index];
