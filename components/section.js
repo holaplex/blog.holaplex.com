@@ -7,7 +7,7 @@ import React from "react";
  * @returns
  */
 const Section = ({ children, className }) => {
-	return <div className={"py-8 bg-base text-content " + className}>{children}</div>;
+	return <div className={"pt-8 bg-base text-content " + className}>{children}</div>;
 };
 
 export default Section;
