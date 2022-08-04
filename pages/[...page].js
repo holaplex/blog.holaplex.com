@@ -7,7 +7,7 @@ export default BlogIndex;
 export const getStaticProps = async (context) => {
 	let page = 1;
 	page = parseInt(context.params.page[0], 10);
-	const posts = listPostContent(page, config.posts_per_page);// config.posts_per_page);
+	const posts = listPostContent(page, config.posts_per_page); // config.posts_per_page);
 	const categories = getCategories();
 	const pagination = {
 		current: page,
@@ -26,17 +26,16 @@ export const getStaticProps = async (context) => {
 export async function getStaticPaths() {
 	const paths = [];
 
-
 	for (let index = 0; index < Math.ceil(countPosts() / config.posts_per_page); index++) {
 		paths.push({
 			params: {
 				page: [String(index + 1)],
-			}
-		})
+			},
+		});
 	}
 
 	return {
 		paths,
-		fallback: false // See the "fallback" section below
+		fallback: false, // See the "fallback" section below
 	};
 }

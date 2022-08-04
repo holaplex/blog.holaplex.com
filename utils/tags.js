@@ -1,3 +1,3 @@
 export const getTagHref = (tag) => {
-	return '/tag/' + encodeURIComponent(tag.trim());
+	return "/tag/" + encodeURIComponent(tag.trim());
 };

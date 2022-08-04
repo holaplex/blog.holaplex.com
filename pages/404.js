@@ -8,17 +8,19 @@ export default function Page() {
 		<Layout>
 			<Section>
 				<Container>
-					<div css={css`
-						text-align: center;
-						min-height: 50vh;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-					`}>
+					<div
+						css={css`
+							text-align: center;
+							min-height: 50vh;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						`}
+					>
 						404 | Page not found
 					</div>
 				</Container>
 			</Section>
 		</Layout>
-	)
+	);
 }

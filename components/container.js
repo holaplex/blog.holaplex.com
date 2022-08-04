@@ -3,10 +3,12 @@ import React from "react";
 import GenericContent from "./genericContent";
 
 const Element = styled.div`
-	& > *:first-child, & > ${GenericContent} > *:first-child {
+	& > *:first-child,
+	& > ${GenericContent} > *:first-child {
 		margin-top: 0;
 	}
-	& > *:last-child, & > ${GenericContent} > *:last-child {
+	& > *:last-child,
+	& > ${GenericContent} > *:last-child {
 		margin-bottom: 0;
 	}
 `;
@@ -15,7 +17,7 @@ const Element = styled.div`
  * Constrains content to the center of the page, adds a background color, padding, margin, and rounded borders.
  * @param {object} props Component props
  * @param {string} props.className Appended to the existing tailwind classes
- * @returns 
+ * @returns
  */
 const Container = ({ children, className, variant }) => {
 	let width = "max-w-3xl";
@@ -31,9 +33,7 @@ const Container = ({ children, className, variant }) => {
 			break;
 	}
 
-	return <Element className={width + " mx-auto w-11/12 p-4 md:p-8 bg-base-dark text-content rounded-2xl my-8 " + className}>
-		{children}
-	</Element>
+	return <Element className={width + " mx-auto w-11/12 p-4 md:p-8 bg-base-dark text-content rounded-2xl my-8 " + className}>{children}</Element>;
 };
 
 export default Container;
