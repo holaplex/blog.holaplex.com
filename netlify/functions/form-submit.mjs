@@ -47,7 +47,7 @@ export const handler = async function (event, context) {
 			body: JSON.stringify({
 				contactList: {
 					contact: contactID,
-					list: 3,
+					list: data.listID,
 					status: 1,
 				},
 			}),

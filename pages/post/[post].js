@@ -18,6 +18,7 @@ import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 import { getTagHref } from "../../utils/tags";
 import SuggestedPosts from "../../components/SuggestedPosts";
+import NewsletterForm from "../../components/newsletter-form";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = ((postContents) => {
@@ -26,7 +27,7 @@ const slugToPostContent = ((postContents) => {
 	return hash;
 })(fetchPostContent());
 
-export default function Post({ title, dateString, slug, description, source, image, tags, suggested }) {
+export default function Post({ title, dateString, slug, description, source, image, tags, suggested, gamingNewsletter }) {
 	const Tags = [];
 	for (let index = 0; index < tags.length; index++) {
 		const tag = tags[index];
@@ -59,6 +60,11 @@ export default function Post({ title, dateString, slug, description, source, ima
 					</p>
 					<div className="w-full lg:w-11/12 mx-auto">
 						<GenericContent>{content}</GenericContent>
+						{gamingNewsletter && <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
+							<p className="font-bold text-center text-white">Subscribe to Web3 Gaming Weekly</p>
+							<p className="text-center mt-2 mb-6">Stay on top of all the latest web3 gaming news, releases, and more by signing up to our weekly newsletter. Straight to your inbox, every Friday.</p>
+							<NewsletterForm listID={4} />
+						</div>}
 					</div>
 					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
 						<div className="text-center w-full text-sm">Share on</div>
@@ -129,6 +135,7 @@ export const getStaticProps = async ({ params }) => {
 			source: mdxSource,
 			tags: data.tags ? data.tags : [],
 			suggested: suggested,
+			gamingNewsletter: !!data.gamingNewsletter,
 		},
 	};
 };

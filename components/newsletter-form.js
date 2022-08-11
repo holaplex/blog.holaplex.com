@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const NewsletterForm = () => {
+const NewsletterForm = ({ listID = 3 }) => {
 	const [inprogress, setInprogress] = useState(false);
 	const [message, setMessage] = useState(false);
 
@@ -17,6 +17,7 @@ const NewsletterForm = () => {
 						const response = await fetch("/.netlify/functions/form-submit", {
 							body: JSON.stringify({
 								email: e.target.email.value,
+								listID,
 							}),
 							method: "POST",
 							headers: {
