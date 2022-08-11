@@ -8,6 +8,8 @@ import Link from "next/link";
 import formatDate from "../utils/formatDate";
 import Pagination from "./pagination";
 import { getTagHref } from "../utils/tags";
+import SuggestedPosts from "./SuggestedPosts";
+import PostThumbnail from "./PostThumbnail";
 
 export function Post(props) {
 	const { slug, date, title, image, tags } = props;
@@ -34,8 +36,12 @@ export function Post(props) {
 	);
 }
 
-export default function BlogIndex({ posts, pagination, categories }) {
+export default function BlogIndex({ posts, pagination, categories, featured }) {
 	let { title } = attributes;
+
+	const FeaturedPosts = featured.map(post => {
+		return <PostThumbnail post={post} key={post.slug} />
+	})
 
 	categories.sort((a, b) => {
 		return b.count - a.count;
@@ -60,6 +66,10 @@ export default function BlogIndex({ posts, pagination, categories }) {
 				<Container variant="wide" className="flex lg:flex-row flex-col gap-4 justify-center">
 					<div className="max-w-xl">{posts ? posts.map((it) => <Post key={it.slug} {...it} />) : <></>}</div>
 					<div className="hidden lg:flex flex-col gap-2 my-4">
+						<span className="text-white">Featured Posts</span>
+						<div className="w-full lg:w-48 flex flex-col gap-1">
+							{FeaturedPosts}
+						</div>
 						<span className="text-white">Popular Topics</span>
 						{categoryElements}
 					</div>

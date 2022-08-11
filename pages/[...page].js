@@ -13,11 +13,13 @@ export const getStaticProps = async (context) => {
 		current: page,
 		pages: Math.ceil(countPosts() / config.posts_per_page),
 	};
+	const featured = getFeaturedPosts();
 	return {
 		props: {
 			posts,
 			pagination,
 			categories,
+			featured,
 			page: 0,
 		},
 	};
