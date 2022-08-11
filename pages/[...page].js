@@ -1,5 +1,5 @@
 import config from "../lib/config";
-import { countPosts, getCategories, listPostContent } from "../lib/posts";
+import { countPosts, getCategories, listPostContent, getFeaturedPosts } from "../lib/posts";
 
 import BlogIndex from "../components/blogIndex";
 export default BlogIndex;
