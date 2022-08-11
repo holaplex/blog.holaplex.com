@@ -27,12 +27,14 @@ collections:
         name: "draftmode"
         widget: "boolean"
         required: false
-      - label: "Feature this post"
+      - label: "Feature this post in the homepage sidebar"
         name: "featured"
         widget: "boolean"
+        default: false
       - label: "Display gaming newsletter signup"
         name: "gamingNewsletter"
         widget: "boolean"
+        default: false
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
