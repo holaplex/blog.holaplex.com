@@ -6,15 +6,16 @@ import Container from "../../components/container";
 
 import { Post } from "../../components/blogIndex";
 import { getTagHref } from "../../utils/tags";
+import formatTagName from "../../utils/formatTagName";
 
 export default function TagPage({ tag, posts }) {
 	return (
 		<Layout>
-			<Metadata title={tag + " | Holaplex"} slug={getTagHref(tag)} />
+			<Metadata title={formatTagName(tag) + " | Holaplex"} slug={getTagHref(tag)} />
 			<Section>
 				<Container variant="slim">
 					<div className="w-full lg:w-11/12 mx-auto">
-						<h2 className="mt-0 text-center">Tag - {tag}</h2>
+						<h2 className="mt-0 text-center">Tag - {formatTagName(tag)}</h2>
 					</div>
 					<div>
 						{posts.map((post) => (

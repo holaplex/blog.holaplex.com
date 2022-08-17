@@ -19,6 +19,7 @@ import Link from "next/link";
 import { getTagHref } from "../../utils/tags";
 import SuggestedPosts from "../../components/SuggestedPosts";
 import NewsletterForm from "../../components/newsletter-form";
+import formatTagName from "../../utils/formatTagName";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = ((postContents) => {
@@ -33,7 +34,7 @@ export default function Post({ title, dateString, slug, description, source, ima
 		const tag = tags[index];
 		Tags.push(
 			<Link key={tag} href={getTagHref(tag)}>
-				<a className="text-white">{tag}</a>
+				<a className="text-white">{formatTagName(tag)}</a>
 			</Link>
 		);
 	}

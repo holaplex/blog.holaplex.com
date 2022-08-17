@@ -10,6 +10,7 @@ import Pagination from "./pagination";
 import { getTagHref } from "../utils/tags";
 import SuggestedPosts from "./SuggestedPosts";
 import PostThumbnail from "./PostThumbnail";
+import formatTagName from "../utils/formatTagName";
 
 export function Post(props) {
 	const { slug, date, title, image, tags } = props;
@@ -25,7 +26,7 @@ export function Post(props) {
 						<span className="truncate w-1/2 text-right">
 							{tags &&
 								tags
-									.map((tag) => tag)
+									.map((tag) => formatTagName(tag))
 									.splice(0, 3)
 									.join(" - ")}
 						</span>
@@ -52,7 +53,7 @@ export default function BlogIndex({ posts, pagination, categories, featured }) {
 		categoryElements.push(
 			<Link href={getTagHref(category.name)} key={category.name}>
 				<a>
-					{category.name} - {category.count}
+					{formatTagName(category.name)} - {category.count}
 				</a>
 			</Link>
 		);
