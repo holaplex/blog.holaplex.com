@@ -19,7 +19,7 @@ export function Post(props) {
 			<a>
 				<div className="p-4 border border-gray-600 my-4 rounded-xl">
 					<h2 className="mt-0">{title}</h2>
-					{image && <img className="aspect-video w-full object-cover" src={"/" + image} alt="" />}
+					{image && <img className="aspect-video w-full object-cover border border-gray-800 rounded-md" src={"/" + image} alt="" />}
 					<div className="mt-4 mb-0 flex justify-between items-center">
 						<span>{formatDate(date)}</span>
 						<span className="truncate w-1/2 text-right">
