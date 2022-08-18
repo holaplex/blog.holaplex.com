@@ -9,7 +9,7 @@ export default function SuggestedPosts({ posts }) {
 						<a>
 							{post.image && <img
 								src={"/" + post.image}
-								className="w-full mx-auto border border-gray-800 rounded-md"
+								className="w-full mx-auto border border-gray-800 rounded-md aspect-video object-cover"
 								alt="" />}
 							<div className="truncate mt-2">{post.title}</div>
 						</a>
