@@ -39,5 +39,10 @@ export const GenericContent = styled.div`
 		margin-left: auto;
 		margin-right: auto;
 	}
+
+	& > p > img:first-of-type {
+		border: 1px solid #262626;
+		box-sizing: border-box;
+	}
 `;
 export default GenericContent;
