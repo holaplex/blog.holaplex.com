@@ -14,8 +14,9 @@ export default function TagPage({ tag, posts }) {
 			<Metadata title={formatTagName(tag) + " | Holaplex"} slug={getTagHref(tag)} />
 			<Section>
 				<Container variant="slim">
-					<div className="w-full lg:w-11/12 mx-auto">
-						<h2 className="mt-0 text-center">Tag - {formatTagName(tag)}</h2>
+					<div className="w-full lg:w-11/12 mx-auto mb-10">
+						<p className="mt-0 text-center">posts about</p>
+						<h1 className="mt-0 text-center">{formatTagName(tag)}</h1>
 					</div>
 					<div>
 						{posts.map((post) => (
