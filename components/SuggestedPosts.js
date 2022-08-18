@@ -11,7 +11,7 @@ export default function SuggestedPosts({ posts }) {
 								src={"/" + post.image}
 								className="w-full mx-auto border border-gray-800 rounded-md aspect-video object-cover"
 								alt="" />}
-							<div className="truncate mt-2">{post.title}</div>
+							<div className="truncate mt-2 text-xs">{post.title}</div>
 						</a>
 					</Link>
 				</div>
