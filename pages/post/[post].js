@@ -39,8 +39,23 @@ export default function Post({ title, dateString, slug, description, source, ima
 		);
 	}
 	const content = hydrate(source, { components });
+
+	let newsletter;
+	if (gamingNewsletter) {
+		newsletter = <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
+			<p className="font-bold text-center text-white">Subscribe to Web3 Gaming Weekly</p>
+			<p className="text-center mt-2 mb-6">Stay on top of all the latest web3 gaming news, releases, and more by signing up to our weekly newsletter. Straight to your inbox, every Friday.</p>
+			<NewsletterForm listID={4} />
+		</div>
+	} else {
+		newsletter = <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
+			<p className="font-bold text-center text-white">Stay up to date with Holaplex</p>
+			<NewsletterForm listID={3} />
+		</div>
+	}
+
 	return (
-		<Layout>
+		<Layout newsletter={false}>
 			<Metadata title={title} date={parseISO(dateString)} slug={slug} description={description} />
 			<Section>
 				<Container>
@@ -61,11 +76,7 @@ export default function Post({ title, dateString, slug, description, source, ima
 					</p>
 					<div className="w-full lg:w-11/12 mx-auto">
 						<GenericContent>{content}</GenericContent>
-						{gamingNewsletter && <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
-							<p className="font-bold text-center text-white">Subscribe to Web3 Gaming Weekly</p>
-							<p className="text-center mt-2 mb-6">Stay on top of all the latest web3 gaming news, releases, and more by signing up to our weekly newsletter. Straight to your inbox, every Friday.</p>
-							<NewsletterForm listID={4} />
-						</div>}
+						{newsletter}
 					</div>
 					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
 						<div className="text-center w-full text-sm">Share on</div>
