@@ -11,12 +11,13 @@ import { getTagHref } from "../utils/tags";
 import SuggestedPosts from "./SuggestedPosts";
 import PostThumbnail from "./PostThumbnail";
 import formatTagName from "../utils/formatTagName";
+import { formatSlug } from "../utils/formatSlug";
 
 export function Post(props) {
 	const { slug, date, title, image, tags } = props;
 
 	return (
-		<Link href={`/post/${slug}`}>
+		<Link href={`/post/${formatSlug(slug)}`}>
 			<a>
 				<div className="p-4 border border-gray-600 my-4 rounded-xl">
 					<h2 className="mt-0">{title}</h2>

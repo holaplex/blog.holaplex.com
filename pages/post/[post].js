@@ -20,6 +20,7 @@ import { getTagHref } from "../../utils/tags";
 import SuggestedPosts from "../../components/SuggestedPosts";
 import NewsletterForm from "../../components/newsletter-form";
 import formatTagName from "../../utils/formatTagName";
+import { formatSlug } from "../../utils/formatSlug";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = ((postContents) => {
@@ -118,7 +119,7 @@ function openLinkInPopup(e) {
 }
 
 export const getStaticPaths = async () => {
-	const paths = fetchPostContent().map((it) => "/post/" + it.slug);
+	const paths = fetchPostContent().map((it) => "/post/" + formatSlug(it.slug));
 	return {
 		paths,
 		fallback: false,
@@ -141,7 +142,7 @@ export const getStaticProps = async ({ params }) => {
 		props: {
 			title: data.title,
 			dateString: data.date,
-			slug: data.slug,
+			slug: formatSlug(data.slug),
 			description: data.description || "",
 			image: data.image ? data.image : false,
 			source: mdxSource,
