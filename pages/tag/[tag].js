@@ -36,7 +36,7 @@ export const getStaticPaths = async () => {
 			for (let index = 0; index < it.tags.length; index++) {
 				const tag = it.tags[index];
 				if (!tags.includes(tag)) {
-					tags.push(tag);
+					tags.push(tag.toLowerCase().trim());
 				}
 			}
 		}
@@ -53,8 +53,14 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
 	const posts = [];
 	fetchPostContent().map((it) => {
-		if (it.tags && !it.draftmode && it.tags.includes(params.tag)) {
-			posts.push(it);
+		if (it.tags && !it.draftmode) {
+			for (let index = 0; index < it.tags.length; index++) {
+				const element = it.tags[index];
+				if (params.tag.toLowerCase().trim() === element.toLowerCase().trim()) {
+					posts.push(it);
+					break;
+				}
+			}
 		}
 	});
 	return {
