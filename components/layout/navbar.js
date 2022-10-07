@@ -62,16 +62,16 @@ const Navbar = () => {
 							href="/products"
 							dropdown={
 								<>
-									<NavItem href="https://enterprise.holaplex.com/products/command-center">
+									<NavItem href="https://holaplex.com/products/command-center">
 										Command Center
 									</NavItem>
-									<NavItem href="https://enterprise.holaplex.com/products/marketplace">Marketplace</NavItem>
+									<NavItem href="https://holaplex.com/products/marketplace">Marketplace</NavItem>
 								</>
 							}
 						>
 							Products
 						</NavItem>
-						<NavItem href="https://enterprise.holaplex.com/team">Team</NavItem>
+						<NavItem href="https://holaplex.com/team">Team</NavItem>
 						<NavItem href="https://blog.holaplex.com">Blog</NavItem>
 						<NavItem href="https://market.holaplex.com">Explore NFTs</NavItem>
 					</ul>
@@ -117,10 +117,10 @@ const Navbar = () => {
 						<Icon.Cross /> Close
 					</div>
 					<NavItem href="https://holaplex.com">Home</NavItem>
-					<NavItem href="https://enterprise.holaplex.com/products">Products</NavItem>
-					<NavItem href="https://enterprise.holaplex.com/team">Team</NavItem>
+					<NavItem href="https://holaplex.com/products">Products</NavItem>
+					<NavItem href="https://holaplex.com/team">Team</NavItem>
 					<NavItem href="https://blog.holaplex.com">Blog</NavItem>
-					<NavItem href="https://enterprise.holaplex.com/contact">Contact Us</NavItem>
+					<NavItem href="https://holaplex.com/contact">Contact Us</NavItem>
 				</div>
 			</div>
 		</>

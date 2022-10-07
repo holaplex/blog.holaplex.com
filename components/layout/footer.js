@@ -17,7 +17,7 @@ const Footer = () => {
 				<Container className="relative z-20">
 					<h2><GradientText>Let's Work Together</GradientText></h2>
 					<p>We make it easy for anyone to buy, sell and engage with NFTs</p>
-					<Button href="https://enterprise.holaplex.com/contact">Contact Us</Button>
+					<Button href="https://holaplex.com/contact">Contact Us</Button>
 				</Container>
 			</Section>
 			<div className="bg-[#010A2A] text-white">
