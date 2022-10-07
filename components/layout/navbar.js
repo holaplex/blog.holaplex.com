@@ -57,7 +57,7 @@ const Navbar = () => {
 						</SmartLink>
 					</div>
 					<ul className="hidden md:flex gap-10">
-						<NavItem href="/">Home</NavItem>
+						<NavItem href="https://holaplex.com">Home</NavItem>
 						<NavItem
 							href="/products"
 							dropdown={
@@ -116,7 +116,7 @@ const Navbar = () => {
 					>
 						<Icon.Cross /> Close
 					</div>
-					<NavItem href="/">Home</NavItem>
+					<NavItem href="https://holaplex.com">Home</NavItem>
 					<NavItem href="https://enterprise.holaplex.com/products">Products</NavItem>
 					<NavItem href="https://enterprise.holaplex.com/team">Team</NavItem>
 					<NavItem href="https://blog.holaplex.com">Blog</NavItem>
