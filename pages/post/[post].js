@@ -21,6 +21,7 @@ import SuggestedPosts from "../../components/SuggestedPosts";
 import NewsletterForm from "../../components/newsletter-form";
 import formatTagName from "../../utils/formatTagName";
 import { formatSlug } from "../../utils/formatSlug";
+import { css } from "@emotion/react";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = ((postContents) => {
@@ -61,12 +62,20 @@ export default function Post({ title, dateString, slug, description, source, ima
 	return (
 		<Layout newsletter={false}>
 			<Metadata title={title} date={parseISO(dateString)} slug={slug} description={description} />
+			<Section className="text-white text-center relative -mt-24 pt-24 bg-[#030E37] overflow-hidden" css={css`
+				background: linear-gradient(270deg, #030D31 6.74%, #030E3B 52.46%, #030C35 54.7%, #010C2C 64.64%, #010825 99.17%);
+			`}>
+				<div className="absolute rounded-full w-96 h-24 bg-[#6680F8] top-1/4 left-[10%] blur-[120px]" />
+				<div className="absolute rounded-full w-24 h-48 bg-[#B4419F] bottom-1/4 left-[10%] blur-[120px]" />
+				<div className="absolute rounded-full w-24 h-48 bg-[#B4419F] bottom-1/3 right-[10%] blur-[120px]" />
+
+				<Container variant="wide" className="flex flex-col lg:my-12 justify-center items-center relative z-50">
+					<h1 className="mt-4">{title}</h1>
+				</Container>
+			</Section>
 			<Section>
 				<Container>
-					<div className="w-full lg:w-11/12 mx-auto">
-						<h1 className="mt-0">{title}</h1>
-					</div>
-					{image && <img src={"/" + image} className="w-full mx-auto my-4" alt="" />}
+					{image && <img src={"/" + image} className="w-full mx-auto -mt-8" alt="" />}
 					<div className="my-4 flex gap-4 flex-wrap justify-center items-center">
 						<span>{formatDate(dateString)}</span>
 						{tags.length > 0 ? (
