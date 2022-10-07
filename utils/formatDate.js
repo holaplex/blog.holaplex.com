@@ -7,7 +7,7 @@ const formatDate = (date) => {
 	const day = dateObj.getDate();
 	const year = dateObj.getFullYear();
 
-	return `${months[month - 1]} ${day}, ${year}`;
+	return `${months[month - 1].substring(0, 3)} ${day}, ${year}`;
 };
 
 export default formatDate;

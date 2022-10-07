@@ -23,7 +23,35 @@ module.exports = {
 					divider: "#EAB196",
 				},
 				"hola-black": "#262626",
+				"gradient-blue": {
+					100: "#132878",
+					200: "#000a2c",
+					700: "#8384FA",
+					900: "#6BE2F8",
+				},
+				green: "#9fca56",
+				brandPurple: {
+					DEFAULT: '#000929',
+					900: "#966db7",
+				},
+				red: {
+					DEFAULT: "#cd3f45",
+					100: "#F597D4",
+				},
+				highlight: {
+					DEFAULT: '#528AD5',
+				}
 			},
+			fontSize: {
+				'sm': '20px',
+				'base': '25px',
+				'lg': ['36px', '35px'],
+				'xl': ['60px', '60px'],
+				'2xl': ['70px', '64px'],
+				'3xl': ['90px', '82px'],
+				'4xl': '140px',
+				'5xl': '150px',
+			}
 		},
 	},
 	plugins: [],

@@ -34,23 +34,26 @@ export default function Post({ title, dateString, slug, description, source, ima
 	for (let index = 0; index < tags.length; index++) {
 		const tag = tags[index];
 		Tags.push(
-			<Link key={tag} href={getTagHref(tag)}>
-				<a className="text-white">{formatTagName(tag)}</a>
-			</Link>
+			<div key={tag} className="bg-gray-100 text-black rounded-3xl px-3 py-1 m-1 inline-block relative">
+				{formatTagName(tag)}
+				<Link href={getTagHref(tag)}>
+					<a className="absolute inset-0"></a>
+				</Link>
+			</div >
 		);
 	}
 	const content = hydrate(source, { components });
 
 	let newsletter;
 	if (gamingNewsletter) {
-		newsletter = <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
-			<p className="font-bold text-center text-white">Subscribe to Web3 Gaming Weekly</p>
+		newsletter = <div className="text-center px-4 py-6 rounded-md">
+			<p className="font-bold text-center">Subscribe to Web3 Gaming Weekly</p>
 			<p className="text-center mt-2 mb-6">Stay on top of all the latest web3 gaming news, releases, and more by signing up to our weekly newsletter. Straight to your inbox, every Friday.</p>
 			<NewsletterForm listID={4} />
 		</div>
 	} else {
-		newsletter = <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
-			<p className="font-bold text-center text-white">Stay up to date with Holaplex</p>
+		newsletter = <div className="text-center px-4 py-6 rounded-md">
+			<p className="font-bold text-center">Stay up to date with Holaplex</p>
 			<NewsletterForm listID={3} />
 		</div>
 	}
@@ -64,7 +67,7 @@ export default function Post({ title, dateString, slug, description, source, ima
 						<h1 className="mt-0">{title}</h1>
 					</div>
 					{image && <img src={"/" + image} className="w-full mx-auto my-4" alt="" />}
-					<p className="my-4 flex gap-4 flex-wrap justify-center">
+					<div className="my-4 flex gap-4 flex-wrap justify-center items-center">
 						<span>{formatDate(dateString)}</span>
 						{tags.length > 0 ? (
 							<>
@@ -74,13 +77,13 @@ export default function Post({ title, dateString, slug, description, source, ima
 						) : (
 							<></>
 						)}
-					</p>
+					</div>
 					<div className="w-full lg:w-11/12 mx-auto">
 						<GenericContent>{content}</GenericContent>
 						{newsletter}
 					</div>
-					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
-						<div className="text-center w-full text-sm">Share on</div>
+					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 lg:text-lg">
+						<div className="text-center w-full">Share on</div>
 						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent("https://blog.holaplex.com/post/" + slug)}>
 							<FaTwitter />
 						</a>
@@ -92,7 +95,7 @@ export default function Post({ title, dateString, slug, description, source, ima
 						</a>
 					</div>
 					<div className="text-center mt-4">
-						<h3 className="font-semibold">Continue Reading:</h3>
+						<p className="font-semibold">Continue Reading:</p>
 						<SuggestedPosts posts={suggested} />
 					</div>
 				</Container>

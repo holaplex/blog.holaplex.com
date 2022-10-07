@@ -12,7 +12,7 @@ export const GenericContent = styled.div`
 	}
 
 	a {
-		color: white;
+		color: #528AD5;
 		text-decoration: underline;
 	}
 
@@ -38,6 +38,12 @@ export const GenericContent = styled.div`
 	& > iframe {
 		margin-left: auto;
 		margin-right: auto;
+		max-width: 100%;
+	}
+	& > iframe[src^="https://www.youtube.com"] {
+		aspect-ratio: 16/9;
+		height: auto;
+		width: 100%;
 	}
 
 	& > p > img:first-of-type {
