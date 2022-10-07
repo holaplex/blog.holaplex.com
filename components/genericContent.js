@@ -50,5 +50,39 @@ export const GenericContent = styled.div`
 		border: 1px solid #262626;
 		box-sizing: border-box;
 	}
+
+	/*
+	** headings
+	*/
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 1.5em 0 0.25em;
+		line-height: 1;
+	}
+
+	h1 {
+		font-size: 1.9rem;
+		font-weight: 800;
+	}
+
+	h2 {
+		font-size: 1.563rem;
+		font-weight: 600;
+	}
+
+	h3 {
+		font-size: 1.25rem;
+	}
+
+	h4,
+	h5,
+	h6 {
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
 `;
 export default GenericContent;
