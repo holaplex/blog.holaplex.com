@@ -46,11 +46,6 @@ export const GenericContent = styled.div`
 		width: 100%;
 	}
 
-	& > p > img:first-of-type {
-		border: 1px solid #262626;
-		box-sizing: border-box;
-	}
-
 	/*
 	** headings
 	*/
