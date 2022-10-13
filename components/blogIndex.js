@@ -12,6 +12,8 @@ import SuggestedPosts from "./SuggestedPosts";
 import PostThumbnail from "./PostThumbnail";
 import formatTagName from "../utils/formatTagName";
 import { formatSlug } from "../utils/formatSlug";
+import { css } from "@emotion/react";
+import Button from "./button";
 
 export function Post(props) {
 	const { slug, date, title, image, tags } = props;
@@ -19,18 +21,16 @@ export function Post(props) {
 	return (
 		<Link href={`/post/${formatSlug(slug)}`}>
 			<a>
-				<div className="p-4 border border-gray-600 my-4 rounded-xl">
-					<h2 className="mt-0">{title}</h2>
-					{image && <img className="aspect-video w-full object-cover border border-gray-800 rounded-md" src={"/" + image} alt="" />}
-					<div className="mt-4 mb-0 flex justify-between items-center">
+				<div className="mb-8 rounded-xl">
+					{image && <img className="aspect-video w-full object-cover border border-gray-8200 rounded-md" src={"/" + image} alt="" />}
+					<h5 className="mt-0 text-base">{title}</h5>
+					<div className="mt-1 mb-0 flex justify-between items-center gap-8">
 						<span>{formatDate(date)}</span>
-						<span className="truncate w-1/2 text-right">
-							{tags &&
-								tags
-									.map((tag) => formatTagName(tag))
-									.splice(0, 3)
-									.join(" - ")}
-						</span>
+						<div>
+							{(tags && tags.length > 0) ? <div className="bg-gray-100 text-black rounded-3xl px-3 py-1 m-1 inline-block">
+								{formatTagName(tags[0])}
+							</div> : <></>}
+						</div>
 					</div>
 				</div>
 			</a>
@@ -43,7 +43,7 @@ export default function BlogIndex({ posts, pagination, categories, featured }) {
 
 	const FeaturedPosts = featured.map(post => {
 		return <PostThumbnail post={post} key={post.slug} />
-	})
+	}).splice(0, 3)
 
 	categories.sort((a, b) => {
 		return b.count - a.count;
@@ -54,7 +54,9 @@ export default function BlogIndex({ posts, pagination, categories, featured }) {
 		categoryElements.push(
 			<Link href={getTagHref(category.name)} key={category.name}>
 				<a>
-					{formatTagName(category.name)} - {category.count}
+					<div className="bg-gray-100 rounded-3xl px-3 py-1 m-1 inline-block">
+						{formatTagName(category.name)}
+					</div>
 				</a>
 			</Link>
 		);
@@ -64,16 +66,33 @@ export default function BlogIndex({ posts, pagination, categories, featured }) {
 		<Layout theme="theme-primary">
 			<Metadata title={title} />
 
+			<Section className="text-white text-center relative -mt-24 pt-24 bg-[#030E37] overflow-hidden" css={css`
+				background: linear-gradient(270deg, #030D31 6.74%, #030E3B 52.46%, #030C35 54.7%, #010C2C 64.64%, #010825 99.17%);
+			`}>
+				<div className="absolute rounded-full w-96 h-24 bg-[#6680F8] top-1/4 left-[10%] blur-[120px]" />
+				<div className="absolute rounded-full w-24 h-48 bg-[#B4419F] bottom-1/4 left-[10%] blur-[120px]" />
+				<div className="absolute rounded-full w-24 h-48 bg-[#B4419F] bottom-1/3 right-[10%] blur-[120px]" />
+
+				<Container variant="wide" className="flex flex-col lg:my-12 justify-center items-center relative z-50">
+					<p>Enterprise-grade NFT Solutions at Scale</p>
+					<h1 className="mt-4">Blogs</h1>
+				</Container>
+			</Section>
+
 			<Section>
 				<Container variant="wide" className="flex lg:flex-row flex-col gap-4 justify-center">
-					<div className="max-w-xl">{posts ? posts.map((it) => <Post key={it.slug} {...it} />) : <></>}</div>
-					<div className="hidden lg:flex flex-col gap-2 my-4">
-						<span className="text-white">Featured Posts</span>
-						<div className="w-full lg:w-48 flex flex-col gap-1">
-							{FeaturedPosts}
+					<div className="max-w-2xl">{posts ? posts.map((it) => <Post key={it.slug} {...it} />) : <></>}</div>
+					<div className="hidden lg:flex flex-col gap-2">
+						<div className="border border-gray-200 rounded-md p-2 max-w-[13.25rem]">
+							<p>Featured Posts</p>
+							<div className="w-full lg:w-48">
+								{FeaturedPosts}
+							</div>
 						</div>
-						<span className="text-white">Popular Topics</span>
-						{categoryElements}
+						<div className="border border-gray-200 rounded-md p-2 max-w-[13.25rem]">
+							<p>Popular Topics</p>
+							{categoryElements}
+						</div>
 					</div>
 				</Container>
 				<Container variant="slim">

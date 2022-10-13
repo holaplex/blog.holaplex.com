@@ -21,6 +21,7 @@ import SuggestedPosts from "../../components/SuggestedPosts";
 import NewsletterForm from "../../components/newsletter-form";
 import formatTagName from "../../utils/formatTagName";
 import { formatSlug } from "../../utils/formatSlug";
+import { css } from "@emotion/react";
 
 const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = ((postContents) => {
@@ -34,23 +35,26 @@ export default function Post({ title, dateString, slug, description, source, ima
 	for (let index = 0; index < tags.length; index++) {
 		const tag = tags[index];
 		Tags.push(
-			<Link key={tag} href={getTagHref(tag)}>
-				<a className="text-white">{formatTagName(tag)}</a>
-			</Link>
+			<div key={tag} className="bg-gray-100 text-black rounded-3xl px-3 py-1 m-1 inline-block relative">
+				{formatTagName(tag)}
+				<Link href={getTagHref(tag)}>
+					<a className="absolute inset-0"></a>
+				</Link>
+			</div >
 		);
 	}
 	const content = hydrate(source, { components });
 
 	let newsletter;
 	if (gamingNewsletter) {
-		newsletter = <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
-			<p className="font-bold text-center text-white">Subscribe to Web3 Gaming Weekly</p>
+		newsletter = <div className="text-center px-4 py-6 rounded-md">
+			<p className="font-bold text-center">Subscribe to Web3 Gaming Weekly</p>
 			<p className="text-center mt-2 mb-6">Stay on top of all the latest web3 gaming news, releases, and more by signing up to our weekly newsletter. Straight to your inbox, every Friday.</p>
 			<NewsletterForm listID={4} />
 		</div>
 	} else {
-		newsletter = <div className="text-center bg-gray-900 px-4 py-6 rounded-md">
-			<p className="font-bold text-center text-white">Stay up to date with Holaplex</p>
+		newsletter = <div className="text-center px-4 py-6 rounded-md">
+			<p className="font-bold text-center">Stay up to date with Holaplex</p>
 			<NewsletterForm listID={3} />
 		</div>
 	}
@@ -58,13 +62,21 @@ export default function Post({ title, dateString, slug, description, source, ima
 	return (
 		<Layout newsletter={false}>
 			<Metadata title={title} date={parseISO(dateString)} slug={slug} description={description} />
+			<Section className="text-white text-center relative -mt-24 pt-24 bg-[#030E37] overflow-hidden" css={css`
+				background: linear-gradient(270deg, #030D31 6.74%, #030E3B 52.46%, #030C35 54.7%, #010C2C 64.64%, #010825 99.17%);
+			`}>
+				<div className="absolute rounded-full w-96 h-24 bg-[#6680F8] top-1/4 left-[10%] blur-[120px]" />
+				<div className="absolute rounded-full w-24 h-48 bg-[#B4419F] bottom-1/4 left-[10%] blur-[120px]" />
+				<div className="absolute rounded-full w-24 h-48 bg-[#B4419F] bottom-1/3 right-[10%] blur-[120px]" />
+
+				<Container variant="wide" className="flex flex-col lg:my-12 justify-center items-center relative z-50">
+					<h1 className="mt-4">{title}</h1>
+				</Container>
+			</Section>
 			<Section>
 				<Container>
-					<div className="w-full lg:w-11/12 mx-auto">
-						<h1 className="mt-0">{title}</h1>
-					</div>
-					{image && <img src={"/" + image} className="w-full mx-auto my-4" alt="" />}
-					<p className="my-4 flex gap-4 flex-wrap justify-center">
+					{image && <img src={"/" + image} className="w-full mx-auto -mt-8" alt="" />}
+					<div className="my-4 flex gap-4 flex-wrap justify-center items-center">
 						<span>{formatDate(dateString)}</span>
 						{tags.length > 0 ? (
 							<>
@@ -74,13 +86,13 @@ export default function Post({ title, dateString, slug, description, source, ima
 						) : (
 							<></>
 						)}
-					</p>
+					</div>
 					<div className="w-full lg:w-11/12 mx-auto">
 						<GenericContent>{content}</GenericContent>
 						{newsletter}
 					</div>
-					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 text-xl">
-						<div className="text-center w-full text-sm">Share on</div>
+					<div className="mt-12 w-full flex justify-center items-center flex-wrap gap-4 lg:text-lg">
+						<div className="text-center w-full">Share on</div>
 						<a onClick={openLinkInPopup} target="_blank" rel="noreferrer" href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent("https://blog.holaplex.com/post/" + slug)}>
 							<FaTwitter />
 						</a>
@@ -92,7 +104,7 @@ export default function Post({ title, dateString, slug, description, source, ima
 						</a>
 					</div>
 					<div className="text-center mt-4">
-						<h3 className="font-semibold">Continue Reading:</h3>
+						<p className="font-semibold">Continue Reading:</p>
 						<SuggestedPosts posts={suggested} />
 					</div>
 				</Container>

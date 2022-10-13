@@ -12,7 +12,7 @@ export const GenericContent = styled.div`
 	}
 
 	a {
-		color: white;
+		color: #528AD5;
 		text-decoration: underline;
 	}
 
@@ -38,11 +38,46 @@ export const GenericContent = styled.div`
 	& > iframe {
 		margin-left: auto;
 		margin-right: auto;
+		max-width: 100%;
+	}
+	& > iframe[src^="https://www.youtube.com"] {
+		aspect-ratio: 16/9;
+		height: auto;
+		width: 100%;
 	}
 
-	& > p > img:first-of-type {
-		border: 1px solid #262626;
-		box-sizing: border-box;
+	/*
+	** headings
+	*/
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 1.5em 0 0.25em;
+		line-height: 1;
+	}
+
+	h1 {
+		font-size: 1.9rem;
+		font-weight: 800;
+	}
+
+	h2 {
+		font-size: 1.563rem;
+		font-weight: 600;
+	}
+
+	h3 {
+		font-size: 1.25rem;
+	}
+
+	h4,
+	h5,
+	h6 {
+		font-size: 1.25rem;
+		font-weight: bold;
 	}
 `;
 export default GenericContent;
